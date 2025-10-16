@@ -69,7 +69,11 @@ const questions = [
 
 let currentQuestionIndex = 0;
 let score = 0;
-let timeLeft = 30; 
+let timer;
+let timePerQuestion = 30; // seconds
+let timeLeft = timePerQuestion;
+let level = 1;
+const levelEl = document.getElementById('level');
 let timerInterval;
 
 /*-------------------DOM elements-------------------*/
@@ -79,7 +83,7 @@ const optionsEl = document.getElementById('options');
 const scoreEl = document.getElementById('score');
 const timerEl = document.getElementById('timer');
 const resultEl = document.getElementById('result');
-const nextBtn = document.getElementById('nextBtn');
+const nextBtn = document.getElementById('nextBtn')
 const restartBtn = document.getElementById('restartBtn');
 
 /*-------------------functions-------------------*/
@@ -93,8 +97,8 @@ function startQuiz() {
     nextBtn.classList.add('hidden');
     restartBtn.classList.add('hidden');
     displayQuestion();
-    startTimer(); 
-}
+    startTimer() ;
+      }
 
 function displayQuestion() {
     const currentQuestion = questions[currentQuestionIndex];
@@ -157,15 +161,7 @@ function endQuiz() {
     restartBtn.classList.remove('hidden');
 }
 
-nextBtn.addEventListener('click', () => {
-    currentQuestionIndex++;
-    if (currentQuestionIndex < questions.length) {
-        displayQuestion();
-        nextBtn.classList.add('hidden');
-    } else {
-        endQuiz();
-    }
-});
+nextBtn
 
 restartBtn.addEventListener('click', startQuiz);
 
