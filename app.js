@@ -71,9 +71,6 @@ let currentQuestionIndex = 0;
 let score = 0;
 let timer;
 let timePerQuestion = 30; // seconds
-let timeLeft = timePerQuestion;
-let level = 1;
-const levelEl = document.getElementById('level');
 let timerInterval;
 
 /*-------------------DOM elements-------------------*/
@@ -142,7 +139,7 @@ function selectAnswer(selectedOption) {
 
 function startTimer() {
     timerInterval = setInterval(() => {
-        timeLeft--;
+        timeLeft; 
         timerEl.textContent = `Time Left: ${timeLeft}s`;
         if (timeLeft <= 0) {
             clearInterval(timerInterval);
@@ -160,9 +157,18 @@ function endQuiz() {
     nextBtn.classList.add('hidden');
     restartBtn.classList.remove('hidden');
 }
-
-nextBtn
-
+nextBtn.addEventListener('click', () => {
+currentQuestionIndex++;
+timeLeft; 
+if (currentQuestionIndex < questions.length)
+{
+    displayQuestion();
+    nextBtn.classList.add('hidden');
+}
+else {
+    endQuiz();
+}
+});
 restartBtn.addEventListener('click', startQuiz);
 
 /*-------------------start quiz-------------------*/
